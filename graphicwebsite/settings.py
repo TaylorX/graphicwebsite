@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -24,6 +24,8 @@ SECRET_KEY = 'j#h3e!-($tz74&x%bl6kv8tnba=wp39#@aop1s0fy4@e)rbo*r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -52,10 +54,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'graphicwebsite.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\', '/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG,
         },
     },
 ]
@@ -104,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-TW'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
@@ -118,17 +122,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
-#deploy
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+        os.path.join(BASE_DIR, 'static'),
 )
-
 
 # template -- web site
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "Sites"),
-    os.path.join(BASE_DIR, "templates"),
-)
+# TEMPLATE_DIRS = (
+#     os.path.join(BASE_DIR, "Sites"),
+#     os.path.join(BASE_DIR, "templates"),
+# )
