@@ -25,8 +25,6 @@ SECRET_KEY = 'j#h3e!-($tz74&x%bl6kv8tnba=wp39#@aop1s0fy4@e)rbo*r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = DEBUG
-
 ALLOWED_HOSTS = []
 
 
@@ -58,7 +56,7 @@ ROOT_URLCONF = 'graphicwebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\', '/')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates').replace('\\', '/'), os.path.join(BASE_DIR, "sites")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,14 +122,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
 STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
 )
-
-# template -- web site
-# TEMPLATE_DIRS = (
-#     os.path.join(BASE_DIR, "Sites"),
-#     os.path.join(BASE_DIR, "templates"),
-# )

@@ -2,23 +2,29 @@
 <html>
 
 <head>
+	{% load staticfiles %}
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
 
+			// load data
 			$.ajax({
 				type: "GET",
-        		url: "data.txt",
+        		url: "{% static "data/data.csv" %}",
         		dataType: "text",
 				success: function(data) {
 					// processData(data);
-					alert("SUCCESS!!!");
+					// alert("SUCCESS!!!");
 				},
 				error: function() {
-					// testprocessData(Arraydata);
-					// alert("ERROR!!!");
+					alert("ERROR!!!");
 				}
 			});
+
+			// post data
+			var recevied_data = '{{ analysis_data }}'
+			alert(recevied_data);
+			processData(recevied_data);
 
 			var itemName = ["Relaunch time","Relaunch time(preview)","setParameters","ShutterCB","RawCB","JpegCB","Show Thumbnaill time","Post Process time","Save Image time"," take picture time","Real take picture time"];
 			var colorCode = ["#3CB371", "#2E8B57", "#61ade5", "blue", "#acf058", "green", "#ecb1f1", "red","#F5DEB3","#2F4F4F","#008080"];
@@ -57,10 +63,8 @@
 				drawChart(Arraydata);
 			}
 
-			var dataCsv =  '47,822,292,216,308,394,77,0,1087,677,1689\n47,822,27,104,195,294,59,0,1077,281,1300\n47,822,38,85,167,268,62,0,1055,267,1266\n47,822,38,481,558,660,60,0,1088,656,1685\n47,822,33,111,200,298,62,0,1363,295,1597';
-
-
-			processData(dataCsv);
+			// var dataCsv =  '47,822,292,216,308,394,77,0,1087,677,1689\n47,822,27,104,195,294,59,0,1077,281,1300\n47,822,38,85,167,268,62,0,1055,267,1266\n47,822,38,481,558,660,60,0,1088,656,1685\n47,822,33,111,200,298,62,0,1363,295,1597';
+			// processData(dataCsv);
 
 			function processData(allText) {
 				var allLinesArray = allText.split('\n');
@@ -69,7 +73,7 @@
 
 					//calculate tiem
 					var rowData = allLinesArray[0].split(',');
-					// alert(rowData.length)
+					alert(rowData.length)
 					var testItem = rowData.length;
 
 					//chart1
@@ -210,7 +214,7 @@
 		});
 
 	</script>
-	<script type="text/javascript" src="static/js/canvasjs.min.js"></script>
+	<script type="text/javascript" src="{% static "js/canvasjs.min.js" %}"></script>
 	<title>Camera Capture Performance Time</title>
 </head>
 <body>
