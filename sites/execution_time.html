@@ -8,72 +8,40 @@
 		$(document).ready(function () {
 
 			// load data
-			$.ajax({
-				type: "GET",
-        		url: "{% static "data/data.csv" %}",
-        		dataType: "text",
-				success: function(data) {
-					// processData(data);
-					// alert("SUCCESS!!!");
-				},
-				error: function() {
-					alert("ERROR!!!");
-				}
-			});
-
-			// post data
-			var recevied_data = '{{ analysis_data }}'
-			alert(recevied_data);
-			processData(recevied_data);
+			// $.ajax({
+			// 	type: "GET",
+			// 	url: "{% static "data/data.csv" %}",
+			// 	dataType: "text",
+			// 	success: function(data) {
+			// 		// processData(data);
+			// 		alert("SUCCESS!!!");
+			// 	},
+			// 	error: function() {
+			// 		alert("ERROR!!!");
+			// 	}
+			// });
 
 			var itemName = ["Relaunch time","Relaunch time(preview)","setParameters","ShutterCB","RawCB","JpegCB","Show Thumbnaill time","Post Process time","Save Image time"," take picture time","Real take picture time"];
 			var colorCode = ["#3CB371", "#2E8B57", "#61ade5", "blue", "#acf058", "green", "#ecb1f1", "red","#F5DEB3","#2F4F4F","#008080"];
 			var markerTypes = ["circle", "square", "triangle","cross","circle", "square", "triangle","cross","circle", "square", "triangle","cross"];
 
-			var Arraydata = [
-			{
-				type: "line",
-				showInLegend: true,
-				lineThickness: 2,
-				name: itemName[3],
-				markerType: markerTypes[3],
-				color: colorCode[1],
-				dataPoints: [
-				{ x: 1, y: 10 },
-				{ x: 2, y: 20 },
-				{ x: 3, y: 30 }
-				]
-			},
-			{
-				type: "line",
-				showInLegend: true,
-				name: itemName[2],
-				color: colorCode[2],
-				markerType: markerTypes[1],
-				lineThickness: 2,
-				dataPoints: [
-				{ x: 1, y: 23 },
-				{ x: 2, y: 122 },
-				{ x: 3, y: 444 }
-				]
-			}
-			]
-
-			function testprocessData(allText) {
-				drawChart(Arraydata);
-			}
+			// post data
+			var recevied_data = '{{ analysis_data|safe}}';
+			// alert(recevied_data);
+			processData(recevied_data);
 
 			// var dataCsv =  '47,822,292,216,308,394,77,0,1087,677,1689\n47,822,27,104,195,294,59,0,1077,281,1300\n47,822,38,85,167,268,62,0,1055,267,1266\n47,822,38,481,558,660,60,0,1088,656,1685\n47,822,33,111,200,298,62,0,1363,295,1597';
 			// processData(dataCsv);
 
 			function processData(allText) {
-				var allLinesArray = allText.split('\n');
+				// var allLinesArray = allText.split('\n');
+				var allLinesArray = allText.split(';');
+				console.log(allLinesArray)
 
 				if(allLinesArray.length > 0){
 
 					//calculate tiem
 					var rowData = allLinesArray[0].split(',');
-					alert(rowData.length)
 					var testItem = rowData.length;
 
 					//chart1
@@ -187,7 +155,7 @@
 
 				var chart2 = new CanvasJS.Chart("chartContainer2", {
 					title: {
-						text: "Camera Capture Performance Time 2",
+						text: "Mean time",
 						fontSize: 30
 					},
 					legend: {
