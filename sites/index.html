@@ -68,13 +68,24 @@
           </div>
         </form>
 
-<!--           <p><a class="btn btn-primary" href="{% url 'executionTime' %}" role="button">Create Charts &raquo;</a></p> -->
         </div>
 
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>File Upload</h2>
+          <p>上傳logcat.txt檔案</p>
+          <table>
+            <tr>
+              <td>
+                <form action="{{ request.build_absolute_uri }}upload/" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="file" name="file"/>
+                  <br />
+                  <p><button type="submit" class="btn btn-primary" value="Upload File" />Upload File</button></a>
+                </form>
+              </td>
+            </tr>
+          </table>
+
        </div>
 
         <div class="col-md-4">

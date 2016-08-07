@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
     url(r'^ExecutionTime/$', views.post_data, name='executionTime'),
+    url(r'^upload/', views.upload, name="upload"),
 ]
