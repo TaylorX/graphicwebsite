@@ -9,18 +9,20 @@ from django.template import loader, Context
 from django import template
 
 def index(request):
-    return render(request,"index.html",{'title_name':'Graphics Generator'})
+    return render(request,"index.html",{'title_name':'DIT Chart Generator'})
 
-def execution_time(request):
-    return render(request,"execution_time.html",{'test':'test'})
-
-def post_data(request):
-    if request.method == "POST":
-    	if 'analysis_data' in request.POST and request.POST['analysis_data']:
-            ready_to_analysis_data = request.POST['analysis_data']
-            return render(request,"execution_time.html",{'info':'done','analysis_data':ready_to_analysis_data})
-    else:
+def input_data(request):
+	if request.method == "POST":
+		if 'analysis_data' in request.POST and request.POST['analysis_data']:
+			ready_to_analysis_data = request.POST['analysis_data']
+			
+			return render(request,"execution_time.html",{'analysis_data':ready_to_analysis_data})
+	else:
 		return render(request,"index.html",{'info':'error'})
+
+# 33,44,55
+# 66,77,88
+# 99,11,23
 
 def upload(request):
     if request.method == 'POST':
@@ -32,7 +34,6 @@ def upload(request):
         # return render(request,"execution_time.html", {'analysis_data':data.read()})
         
         data = read_uploaded_file(filename)
-
         return render(request,"execution_time.html", {'analysis_data':data})
 
     return HttpResponse("index.html", {'message':'Failed'})
@@ -96,7 +97,6 @@ def read_uploaded_file(filename):
 				count_total_item+=1
 			else:
 				total = total + logLine
-			
 			count_line_item=0
 
 	return total

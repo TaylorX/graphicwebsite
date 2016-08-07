@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>DIT Graphics Generator</title>
+    <title>DIT Chart Generator</title>
 
     {% load staticfiles %}
 
@@ -44,8 +44,8 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h1></h1>
+        <p>解析AsusCamera的<b>[performace]</b>Log，利用數據圖看出AsusCamera拍照的效能。</p>
       </div>
     </div>
 
@@ -53,25 +53,9 @@
       <!-- Example row of columns -->
 
       <div class="row">
-        <div class="col-md-4">
-          <h2>AP</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-
-    
-        <form action="{% url 'executionTime' %}" method="POST" role="form" class="form-horizontal">
-          {% csrf_token %}
-          <div class="form-group">
-          <p><textarea class="form-control col-xs-12 col-xs-8"  rows="5" style="overflow:auto;resize:none" name="analysis_data" ></textarea></p>
-          </div>
-          <div class="form-group">
-          <p><button type="submit" class="btn btn-primary" >Create Charts &raquo;</button></p>
-          </div>
-        </form>
-
-        </div>
 
         <div class="col-md-4">
-          <h2>File Upload</h2>
+          <h2>Log File Upload</h2>
           <p>上傳logcat.txt檔案</p>
           <table>
             <tr>
@@ -85,21 +69,28 @@
               </td>
             </tr>
           </table>
-
        </div>
 
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
+<!--         <div class="col-md-4">
+          <h2>Manual input</h2>
+          <p>手動輸入數據</p>
+        <form action="{% url 'manual' %}" method="POST" role="form" class="form-horizontal">
+          {% csrf_token %}
+          <div class="form-group">
+          <p><textarea class="form-control col-xs-12 col-xs-8"  rows="5" style="overflow:auto;resize:none" name="analysis_data" ></textarea></p>
+          </div>
+          <div class="form-group">
+          <p><button type="submit" class="btn btn-primary" >Send dataset &raquo;</button></p>
+          </div>
+        </form>
+        </div> -->
 
       </div>
 
       <hr>
 
       <footer>
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>&copy; 2016 DIT SW.</p>
       </footer>
     </div> <!-- /container -->
 
