@@ -71,6 +71,23 @@
           </table>
        </div>
 
+        <div class="col-md-4">
+          <h2>CSV File Upload</h2>
+          <p>上傳log.csv檔案</p>
+          <table>
+            <tr>
+              <td>
+                <form action="{{ request.build_absolute_uri }}upload_2/" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="file" name="file"/>
+                  <br />
+                  <p><button type="submit" class="btn btn-primary" value="Upload File" />Upload File</button></a>
+                </form>
+              </td>
+            </tr>
+          </table>
+       </div>
+
 <!--         <div class="col-md-4">
           <h2>Manual input</h2>
           <p>手動輸入數據</p>

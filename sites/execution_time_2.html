@@ -11,31 +11,21 @@
 			var colorCode = ["#3CB371", "#2E8B57", "#61ade5", "blue", "#acf058", "green", "#ecb1f1", "red","#F5DEB3","#2F4F4F","#008080"];
 			var markerTypes = ["circle", "square", "triangle","cross","circle", "square", "triangle","cross","circle", "square", "triangle","cross"];
 
-			// load data
-			// $.ajax({
-			// 	type: "GET",
-			// 	url: "{% static "data/data.csv" %}",
-			// 	dataType: "text",
-			// 	success: function(data) {
-			// 		// processData(data);
-			// 		alert("SUCCESS!!!");
-			// 	},
-			// 	error: function() {
-			// 		alert("ERROR!!!");
-			// 	}
-			// });
-
 			// post data
-			var recevied_data = '{{ analysis_data|safe}}';
-			alert(recevied_data);
-			// processData(recevied_data);
+			var recevied_data = '{{ analysis_data_1|safe}}'
+			var recevied_data2 = '{{ analysis_data_2|safe}}'
+			// alert(recevied_data);
+			processData(recevied_data2, recevied_data);
 
 			// var dataCsv =  '47,822,292,216,308,394,77,0,1087,677,1689\n47,822,27,104,195,294,59,0,1077,281,1300\n47,822,38,85,167,268,62,0,1055,267,1266\n47,822,38,481,558,660,60,0,1088,656,1685\n47,822,33,111,200,298,62,0,1363,295,1597';
 			// processData(dataCsv);
 
-			function processData(allText) {
-				var allLinesArray = allText.split('\n');
-				console.log(allLinesArray)
+			function processData(allText, listname) {
+				// var allLinesArray = allText.split('\n');
+				var listnameArray = listname.split(';');
+				var allLinesArray = allText.split(';');
+
+				// console.log(listnameArray)
 
 				if(allLinesArray.length > 0){
 
@@ -64,44 +54,37 @@
 						for (var j = 0; j < rowData.length; j++) {
 							// console.log("j = " + j + " " +rowData[j])
 							dataSeries[j].dataPoints.push({
-								label: i+1,
+								label: listnameArray[i],
 								y: parseInt(rowData[j]),
 							});
 							
 						}
 					}
 
-					listForChart2 = []
-					for (var i = 0; i <= dataSeries.length - 1; i++) {
-						// console.log("i =" + i)
-						// console.log("dataSeries[i].length =" + dataSeries[i].dataPoints)
-
-						total = 0;							
-						for (var j = 0; j <= dataSeries[i].dataPoints.length - 1; j++) {
-							// console.log("j =" + j)
-							// console.log(dataSeries[i].dataPoints[j].y)
-							total += dataSeries[i].dataPoints[j].y
-						}
-						listForChart2.push(total/dataSeries[i].dataPoints.length)
-					}
-
-					console.log(listForChart2)
-
 					//chart2
 					var dataSeries2 = [];
-					dataSeries2.push({
-					    type: "column",
-					    name: "Mean time",
-					    showInLegend: true,
-						dataPoints: []
-					});
-
-					for (var k = 0; k <= listForChart2.length - 1; k++) {
-						dataSeries2[0].dataPoints.push({
-							label: itemName[k],
-							y: listForChart2[k]
+					for (var i = 0; i < listnameArray.length; i++) {
+						dataSeries2.push({
+						    type: "column",
+						    name: listnameArray[i],
+						    showInLegend: true,
+							dataPoints: []
 						});
 					}
+
+					for (var i = 0; i < dataSeries.length; i++) {
+						console.log("i =" + i + " dataSeries[i].length =" + dataSeries[i].dataPoints.length)						
+						for (var j = 0; j < dataSeries[i].dataPoints.length; j++) {
+							console.log("j =" + j)
+							console.log(dataSeries[i].dataPoints[j].y)
+							dataSeries2[j].dataPoints.push({
+								label: itemName[i],
+								y: dataSeries[i].dataPoints[j].y
+							});
+						}
+					}
+					// console.log(dataSeries2)
+
 
 				}
 
@@ -119,7 +102,7 @@
 					panEnabled: true,
 					animationEnabled: true,
 					axisX: {
-						title:"The number of executions",
+						title:"Various devices",
 						gridColor: "Silver",
 						tickColor: "silver",
 						interval: 1
@@ -154,13 +137,16 @@
 
 				var chart2 = new CanvasJS.Chart("chartContainer2", {
 					title: {
-						text: "Mean time",
+						text: "Division Time",
 						fontSize: 30
 					},
 					legend: {
 						verticalAlign: "bottom",
 						horizontalAlign: "center"
 					},
+					toolTip: {
+						shared: true
+					},	
 					axisY: {
 						title:"Spend time",
 						gridColor: "Silver",

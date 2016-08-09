@@ -23,6 +23,7 @@ from ditgraphic import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
-    url(r'^manual/$', views.input_data, name='manual'),
-    url(r'^upload/', views.upload, name="upload"),
+    url(r'^manual/$', views.manual, name='manual'),
+    url(r'^upload/$', views.upload, name="upload"),
+    url(r'^upload_2/$', views.upload_2, name='upload_2'),
 ]
