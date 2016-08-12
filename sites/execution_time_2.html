@@ -3,18 +3,21 @@
 
 <head>
 	{% load staticfiles %}
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static "js/jquery.min.js"%}"></script>
+	<link type="text/css" href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+	<script type="text/javascript" src="{% static "js/bootstrap.min.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/canvasjs.min.js" %}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
 
-			var itemName = ["Relaunch time","Relaunch time(preview)","setParameters","ShutterCB","RawCB","JpegCB","Show Thumbnaill time","Post Process time","Save Image time"," take picture time","Real take picture time"];
-			var colorCode = ["#3CB371", "#2E8B57", "#61ade5", "blue", "#acf058", "green", "#ecb1f1", "red","#F5DEB3","#2F4F4F","#008080"];
-			var markerTypes = ["circle", "square", "triangle","cross","circle", "square", "triangle","cross","circle", "square", "triangle","cross"];
+			var itemName = {{getitemName|safe}}
+			var colorCode = {{getitemColor|safe}}
+			var markerTypes = {{getitemshape|safe}}
 
 			// post data
 			var recevied_data = '{{ analysis_data_1|safe}}'
 			var recevied_data2 = '{{ analysis_data_2|safe}}'
-			// alert(recevied_data);
+
 			processData(recevied_data2, recevied_data);
 
 			// var dataCsv =  '47,822,292,216,308,394,77,0,1087,677,1689\n47,822,27,104,195,294,59,0,1077,281,1300\n47,822,38,85,167,268,62,0,1055,267,1266\n47,822,38,481,558,660,60,0,1088,656,1685\n47,822,33,111,200,298,62,0,1363,295,1597';
@@ -39,7 +42,7 @@
 						dataSeries.push({
 				            type: "line",
 							showInLegend: true,
-							name: itemName[i],
+							name: itemName[i+1],
 							color: colorCode[i],
 							markerType: markerTypes[i],
 							lineThickness: 2,
@@ -73,12 +76,12 @@
 					}
 
 					for (var i = 0; i < dataSeries.length; i++) {
-						console.log("i =" + i + " dataSeries[i].length =" + dataSeries[i].dataPoints.length)						
+						// console.log("i =" + i + " dataSeries[i].length =" + dataSeries[i].dataPoints.length)						
 						for (var j = 0; j < dataSeries[i].dataPoints.length; j++) {
-							console.log("j =" + j)
-							console.log(dataSeries[i].dataPoints[j].y)
+							// console.log("j =" + j)
+							// console.log(dataSeries[i].dataPoints[j].y)
 							dataSeries2[j].dataPoints.push({
-								label: itemName[i],
+								label: itemName[i+1],
 								y: dataSeries[i].dataPoints[j].y
 							});
 						}
@@ -110,11 +113,10 @@
 					toolTip: {
 						shared: true
 					},
-					theme: "theme2",
+					theme: "theme5",
 					axisY: {
 						title:"Spend time",
-						gridColor: "Silver",
-						tickColor: "silver"
+						interlacedColor: "#F5F5F5",
 					},
 					legend: {
 						verticalAlign: "center",
@@ -144,20 +146,31 @@
 						verticalAlign: "bottom",
 						horizontalAlign: "center"
 					},
-					toolTip: {
-						shared: true
-					},	
 					axisY: {
 						title:"Spend time",
 						gridColor: "Silver",
 						tickColor: "silver"
 					},
+					toolTip: {
+						shared: true
+					},	
 					zoomEnabled: true,
 					panEnabled: true,
 					animationEnabled: true,
 					theme: "theme1",
 					data: Arraydata2,
-
+					legend: {
+						cursor: "pointer",
+						itemclick: function (e) {
+							if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+								e.dataSeries.visible = false;
+							}
+							else {
+								e.dataSeries.visible = true;
+							}
+							chart.render();
+						}
+					}
 	            });
 
 				chart.render();
@@ -167,11 +180,46 @@
 		});
 
 	</script>
-	<script type="text/javascript" src="{% static "js/canvasjs.min.js" %}"></script>
 	<title>Camera Capture Performance Time</title>
 </head>
 <body>
-	<div id="chartContainer" style="height: 430px; width: 100%;"></div>
-	<div id="chartContainer2" style="height: 430px; width: 100%;"></div>
+  <div class="container">
+  <table class="table">
+    <tbody>
+		<tr>
+			{% for value in getitemName %}
+        		<td>{{value}}</td>
+    		{% endfor %}
+		</tr>
+    	{% for values in listValue %}
+    	<tr>
+    		{% for value in values %}
+        	<td>{{value}}</td>
+    		{% endfor %}
+    	</tr>
+    	{% endfor %}
+    </tbody>
+  </table>
+      <tr>
+   	<td><button type="button" class="btn btn-primary" >Camera Capture Performance Time</button></td>
+   	<td><button type="button" class="btn btn-success" >Division Time</button></td>
+	</tr>
+  </div>
+  	<div id="chartContainer" class="collapse1 in" style="height: 450px; width: 100%;"></div>
+	<div id="chartContainer2" class="collapse2 in" style="height: 450px; width: 100%;"></div>
+
+	<script>
+	$(document).ready(function(){
+	    $(".btn-primary").click(function(){
+	        $(".collapse1").collapse('toggle');
+	        $(".collapse2").collapse('hide');
+	    });
+	    $(".btn-success").click(function(){
+	        $(".collapse2").collapse('toggle');
+	        $(".collapse1").collapse('hide');
+	    });
+	});
+	</script>
+
 </body>
 </html>
