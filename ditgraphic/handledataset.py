@@ -123,4 +123,6 @@ def read_uploaded_logcat_file(filename):
 				listMean[count_line_item-1] += int(logLine)
 			count_line_item=0
 
+	listMean[:] = [x / countItem for x in listMean]
+
 	return total, listMean
