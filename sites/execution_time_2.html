@@ -183,41 +183,43 @@
 	<title>Camera Capture Performance Time</title>
 </head>
 <body>
-  <div class="container">
-  <table class="table table-striped">
-    <tbody>
-		<tr>
-			{% for value in getitemName %}
-        		<td><div class="text-center">{{value}}</div></td>
-    		{% endfor %}
-		</tr>
-    	{% for values in listValue %}
-    	<tr>
-    		{% for value in values %}
-        	<td><div class="text-center">{{value}}</div></td>
-    		{% endfor %}
-    	</tr>
-    	{% endfor %}
-    </tbody>
-  </table>
-   	<button type="button" class="btn btn-primary" >Camera Capture Performance Time</button>
-   	<button type="button" class="btn btn-success" >Division Time</button>
-  </div>
-  	<div id="chartContainer" class="collapse1" style="height: 450px; width: 100%;"></div>
-	<div id="chartContainer2" class="collapse2" style="height: 450px; width: 100%;"></div>
-
-	<script>
-	$(document).ready(function(){
-	    $(".btn-primary").click(function(){
-	        $(".collapse1").collapse('toggle');
-	        $(".collapse2").collapse('hide');
-	    });
-	    $(".btn-success").click(function(){
-	        $(".collapse2").collapse('toggle');
-	        $(".collapse1").collapse('hide');
-	    });
-	});
-	</script>
-
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    {% for value in getitemName %}
+                    <td>
+                        <div class="text-center">{{value}}</div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% for values in listValue %}
+                <tr>
+                    {% for value in values %}
+                    <td>
+                        <div class="text-center">{{value}}</div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary">Camera Capture Performance Time</button>
+        <button type="button" class="btn btn-success">Division Time</button>
+    </div>
+    <div id="chartContainer" class="collapse1" style="height: 450px; width: 100%;"></div>
+    <div id="chartContainer2" class="collapse2 " style="height: 450px; width: 100%;"></div>
+    <script>
+    $(document).ready(function() {
+        $(".btn-primary").click(function() {
+            $(".collapse1").collapse('toggle');
+            $(".collapse2").collapse('hide');
+        });
+        $(".btn-success").click(function() {
+            $(".collapse2").collapse('toggle');
+            $(".collapse1").collapse('hide');
+        });
+    });
+    </script>
 </body>
 </html>
