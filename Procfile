@@ -1,1 +1,1 @@
-web: gunicorn SpotSearch.wsgi --log-file -
+web: gunicorn graphicwebsite.wsgi --log-file -
