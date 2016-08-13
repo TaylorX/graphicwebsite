@@ -70,6 +70,7 @@ def read_uploaded_logcat_file(filename):
 	f = open('static/data/' + filename,'r')
 	list1 = []
 	devicename = ''
+	AppVersion = ''
 	for row in open('static/data/' + filename):
 		row = f.readline()
 		logLine = str(row);
@@ -79,7 +80,10 @@ def read_uploaded_logcat_file(filename):
 		if 'DEVICE=D' in logLine:
 			logLine = logLine.split('=')
 			logLine = logLine[1].split('\r\n')
-			devicename = logLine[0]
+			devicename = 'Project:'+logLine[0]
+		if 'printAppVersion=' in logLine:
+			logLine = logLine.split('=')
+			AppVersion = '	AppVersion:'+logLine[1]
 
 	f.close()
 
@@ -130,4 +134,4 @@ def read_uploaded_logcat_file(filename):
 
 	listMean[:] = [x / countItem for x in listMean]
 
-	return total, listMean, devicename
+	return total, listMean, devicename+AppVersion
