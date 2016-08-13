@@ -159,7 +159,7 @@
 
 				var chart2 = new CanvasJS.Chart("chartContainer2", {
 					title: {
-						text: "Mean time",
+						text: "Mean",
 						fontSize: 30
 					},
 					legend: {
@@ -204,28 +204,39 @@
 </head>
 <body>
  <div class="container">
-  <table class="table">
+  <table class="table table-striped">
     <tbody>
+    	<caption>
+    		<div class="text-center">
+    			<h2>{{devicename}}</h2>
+    		</div>
+    	</caption>
 		<tr>
 			{% for value in itemName %}
-        		<td>{{value}}</td>
+        		<td>
+        			<div class="text-center">
+        				{{value}}
+        			</div>
+        		</td>
     		{% endfor %}
 		</tr>
     	<tr>
     		{% for value in analysis_data_mean %}
-        	<td>{{value}}</td>
+        	<td>
+        		<div class="text-center">
+        			{{value}}
+        		</div>
+        	</td>
     		{% endfor %}
     	</tr>
     </tbody>
   </table>
-      <tr>
-   	<td><button type="button" class="btn btn-primary" >Camera Capture Performance Time</button></td>
-   	<td><button type="button" class="btn btn-success" >Division Time</button></td>
-	</tr>
+   	<button type="button" class="btn btn-primary" >Camera Capture Performance Time</button>
+   	<button type="button" class="btn btn-success" >Mean</button>
   </div>
 
-	<div id="chartContainer" class="collapse1 in" style="height: 450px; width: 100%;"></div>
-	<div id="chartContainer2" class="collapse2 in" style="height: 450px; width: 100%;"></div>
+	<div id="chartContainer" class="collapse1" style="height: 450px; width: 100%;"></div>
+	<div id="chartContainer2" class="collapse2" style="height: 450px; width: 100%;"></div>
 
 	<script>
 	$(document).ready(function(){

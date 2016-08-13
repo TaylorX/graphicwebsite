@@ -69,12 +69,17 @@ def read_uploaded_logcat_file(filename):
 
 	f = open('static/data/' + filename,'r')
 	list1 = []
+	devicename = ''
 	for row in open('static/data/' + filename):
 		row = f.readline()
 		logLine = str(row);
 
 		if '[performance]' in logLine and 'autoFocus' not in logLine:
 			list1.append(logLine)
+		if 'DEVICE=D' in logLine:
+			logLine = logLine.split('=')
+			logLine = logLine[1].split('\r\n')
+			devicename = logLine[0]
 
 	f.close()
 
@@ -125,4 +130,4 @@ def read_uploaded_logcat_file(filename):
 
 	listMean[:] = [x / countItem for x in listMean]
 
-	return total, listMean
+	return total, listMean, devicename
