@@ -22,6 +22,7 @@ def paser_value_list(listName, data, column_size):
 	listValue = [[str(0) for i in range(column_size) ] for j in range(len(listName)) ]
 
 	mStr = ''
+	temp = ''
 	column_size = column_size - 1
 	count = 0
 	for i, content in enumerate(data):
@@ -33,14 +34,15 @@ def paser_value_list(listName, data, column_size):
 			listValue[count][mod+1] = content
 		else:
 			if i < len(data)-1:
-				mStr = mStr + content
+				mStr = mStr + content +';'
 				listValue[count][mod+1] = content
 				count+=1
 			else:
 				mStr = mStr + content
+				temp = mStr
 				listValue[count][mod+1] = content
 				count+=1
-	return mStr, listValue
+	return temp, listValue
 
 def read_uploaded_csv_file(filename):
 
