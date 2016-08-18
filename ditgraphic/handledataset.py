@@ -33,7 +33,7 @@ def paser_value_list(listName, data, column_size):
 			listValue[count][mod+1] = content
 		else:
 			if i < len(data)-1:
-				mStr = mStr + content + ';'
+				mStr = mStr + content +';'
 				listValue[count][mod+1] = content
 				count+=1
 			else:
@@ -54,14 +54,15 @@ def read_uploaded_csv_file(filename):
 		logLine = str(row);
 		split_item = logLine.split('\n')
 		for content in split_item:
-			split_item = content.split(',')
-			column_size = len(split_item)
-			for count, cc in enumerate(split_item):
-				if count == 0 and cc != '':
-					list_title.append(cc)
-				else:
-					if cc:
-						list_content.append(cc)
+			if content:
+				temp = content.split(',')
+				column_size = len(temp)
+				for count, cc in enumerate(temp):
+					if count == 0 and cc != '':
+						list_title.append(cc)
+					else:
+						if cc:
+							list_content.append(cc.strip())
 
 	return list_title, list_content, column_size
 
