@@ -54,14 +54,15 @@ def read_uploaded_csv_file(filename):
 		logLine = str(row);
 		split_item = logLine.split('\n')
 		for content in split_item:
-			split_item = content.split(',')
-			column_size = len(split_item)
-			for count, cc in enumerate(split_item):
-				if count == 0 and cc != '':
-					list_title.append(cc)
-				else:
-					if cc:
-						list_content.append(cc)
+			if content:
+				temp = content.split(',')
+				column_size = len(temp)
+				for count, cc in enumerate(temp):
+					if count == 0 and cc != '':
+						list_title.append(cc)
+					else:
+						if cc:
+							list_content.append(cc)
 
 	return list_title, list_content, column_size
 
