@@ -62,8 +62,7 @@ def read_uploaded_csv_file(filename):
 						list_title.append(cc)
 					else:
 						if cc:
-							cc.strip()
-							list_content.append(cc)
+							list_content.append(cc.strip())
 
 	return list_title, list_content, column_size
 
