@@ -44,7 +44,7 @@ def paser_value_list(listName, data, column_size):
 
 def read_uploaded_csv_file(filename):
 
-	f = open('static/data/'+filename,'r')
+	f = open('static/data/'+filename,'rb+')
 	
 	list_title = []
 	list_content = []
