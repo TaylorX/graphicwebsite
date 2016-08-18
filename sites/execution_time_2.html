@@ -17,23 +17,24 @@
 			// post data
 			var recevied_data = '{{ analysis_data_1|safe}}'
 			var recevied_data2 = '{{ analysis_data_2|safe}}'
-
-			processData(recevied_data2, recevied_data);
+			console.log({{listValue|safe}})
+			processData({{listValue|safe}}, recevied_data);
 
 			// var dataCsv =  '47,822,292,216,308,394,77,0,1087,677,1689\n47,822,27,104,195,294,59,0,1077,281,1300\n47,822,38,85,167,268,62,0,1055,267,1266\n47,822,38,481,558,660,60,0,1088,656,1685\n47,822,33,111,200,298,62,0,1363,295,1597';
 			// processData(dataCsv);
 
 			function processData(allText, listname) {
 				// var allLinesArray = allText.split('\n');
-				var listnameArray = listname.split(';');
-				var allLinesArray = allText.split(';');
+				var listnameArray = listname.split(';')
+				var allLinesArray = allText
 
-				// console.log(listnameArray)
+				console.log(allLinesArray)
 
 				if(allLinesArray.length > 0){
 
 					//calculate tiem
-					var rowData = allLinesArray[0].split(',');
+					// var rowData = allLinesArray[0].split(',');
+					var rowData = allLinesArray[0];
 					var testItem = rowData.length;
 
 					//chart1
@@ -51,7 +52,8 @@
 					}
 
 					for (var i = 0; i <= allLinesArray.length - 1; i++) {
-					    var rowData = allLinesArray[i].split(',');
+					    // var rowData = allLinesArray[i].split(',');
+					    var rowData = allLinesArray[0];
 						// console.log(rowData)
 						// console.log("i = " + i)
 						for (var j = 0; j < rowData.length; j++) {
