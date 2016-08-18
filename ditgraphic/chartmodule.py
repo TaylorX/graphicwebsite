@@ -1,5 +1,5 @@
 def getitemName():
-	itemName = ["Name","Relaunch time","Relaunch time preview","setParameters","ShutterCB","RawCB","JpegCB","Show Thumbnaill time","Post Process time","Save Image time"," take picture time","Real take picture time"]
+	itemName = ["Name","launch time","launch time preview","setParameters","ShutterCB","RawCB","JpegCB","Show Thumbnaill time","Post Process time","Save Image time"," take picture time","Real take picture time"]
 	return itemName
 
 def getitemColor():
