@@ -93,7 +93,7 @@ def read_uploaded_logcat_file(filename):
 	sCountTag = True
 	for logLine in list1:
 
-		if 'Relaunch time:' in logLine:
+		if 'launch time:' in logLine:
 			# print logLine
 			if countItem > 0:
 				sCountTag = False
