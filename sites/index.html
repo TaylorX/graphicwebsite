@@ -38,7 +38,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1></h1>
-        <p>解析AsusCamera的<b>[performace]</b>Log，利用數據圖看出AsusCamera拍照的效能。</p>
+        <p>解析Camera的<b>[performace]</b>Log，從數據圖看出Camera的「拍照」效能。</p>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       <div class="row">
 
         <div class="col-md-4">
-          <h2>Log File Upload</h2>
+          <h3>Logcat File Upload</h3>
           <p>上傳logcat.txt檔案</p>
           <table>
             <tr>
@@ -62,10 +62,28 @@
               </td>
             </tr>
           </table>
+          </br>
+          <!-- Trigger the modal with a button -->
+          <p><h4><b>圖表範例：</b></h4>
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal1">點此查看</button>
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal1_1">點此查看</button>
+          </p>
        </div>
 
         <div class="col-md-4">
-          <h2>CSV File Upload</h2>
+          <h3>CSV File Upload</h3>
+          <ol>
+            <li><a href="https://www.asuswebstorage.com/navigate/s/E6FA49806E29489D9EB8A7B97FAEAAF6Y">下載.py</a></li>
+            <li>將logcat.txt跟.py放在相同目錄下並執行.py</li>
+            <li>將不同專案的mean.txt整理成一份.csv或.txt</li>
+          </ol>
+          <p>註：上傳格式</p>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <p>ProjectName1,value1,value2,...,value11</p>
+              <p>ProjectName2,value1,value2,...,value11</p>
+            </div>
+          </div>
           <p>上傳.csv或.txt檔案</p>
           <table>
             <tr>
@@ -79,24 +97,101 @@
               </td>
             </tr>
           </table>
-          <p>註：上傳格式</p>
-          <p>project_name_1,value1,value2,...,value11</p>
-          <p>project_name_2,value1,value2,...,value11</p>
+          </br>
+          <!-- Trigger the modal with a button -->
+          <p><h4><b>圖表範例：</b></h4>
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal2">點此查看</button>
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal2_1">點此查看</button>
+          </p>
        </div>
 
-<!--         <div class="col-md-4">
-          <h2>Manual input</h2>
-          <p>手動輸入數據</p>
-        <form action="{% url 'manual' %}" method="POST" role="form" class="form-horizontal">
-          {% csrf_token %}
-          <div class="form-group">
-          <p><textarea class="form-control col-xs-12 col-xs-8"  rows="5" style="overflow:auto;resize:none" name="analysis_data" ></textarea></p>
+        <div class="col-md-4">
+          <!-- Modal -->
+          <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Example Chart 1</h4>
+                </div>
+                <div class="modal-body">
+                  <p><img src="{% static "pic/example1.png"%}" class="img-rounded" alt="example1" width="100%" height="100%"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
           </div>
-          <div class="form-group">
-          <p><button type="submit" class="btn btn-primary" >Send dataset &raquo;</button></p>
+        </div>
+
+        <div class="col-md-4">
+          <!-- Modal -->
+          <div class="modal fade" id="myModal1_1" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Example Chart 1</h4>
+                </div>
+                <div class="modal-body">
+                  <p><img src="{% static "pic/example1_1.png"%}" class="img-rounded" alt="example1" width="100%" height="100%"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
           </div>
-        </form>
-        </div> -->
+        </div>
+
+        <div class="col-md-4">
+          <!-- Modal -->
+          <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Example Chart 2</h4>
+                </div>
+                <div class="modal-body">
+                  <p><img src="{% static "pic/example2.png"%}" class="img-responsive" alt="example2" width="100%" height="100%"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <!-- Modal -->
+          <div class="modal fade" id="myModal2_1" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Example Chart 2</h4>
+                </div>
+                <div class="modal-body">
+                  <p><img src="{% static "pic/example2_1.png"%}" class="img-responsive" alt="example2" width="100%" height="100%"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
 
       </div>
 

@@ -1,5 +1,5 @@
 import os
-
+ 
 def handle_uploaded_file(file, filename):
     if not os.path.exists('static/data/'):
         os.mkdir('static/data/')
@@ -56,8 +56,8 @@ def read_uploaded_csv_file(filename):
 		for content in split_item:
 			split_item = content.split(',')
 			column_size = len(split_item)
-			for cc in split_item:
-				if cc.isalpha():
+			for count, cc in enumerate(split_item):
+				if count == 0 and cc != '':
 					list_title.append(cc)
 				else:
 					if cc:
