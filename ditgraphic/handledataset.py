@@ -33,7 +33,7 @@ def paser_value_list(listName, data, column_size):
 			listValue[count][mod+1] = content
 		else:
 			if i < len(data)-1:
-				mStr = mStr + content + ';'
+				mStr = mStr + content
 				listValue[count][mod+1] = content
 				count+=1
 			else:
@@ -44,7 +44,7 @@ def paser_value_list(listName, data, column_size):
 
 def read_uploaded_csv_file(filename):
 
-	f = open('static/data/'+filename,'rb+')
+	f = open('static/data/'+filename,'r')
 	
 	list_title = []
 	list_content = []
